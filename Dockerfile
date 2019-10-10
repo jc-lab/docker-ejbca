@@ -65,5 +65,7 @@ ADD "ejbcainit.sh" "/opt/ejbcainit.sh"
 WORKDIR "/"
 ADD "docker-entrypoint.sh" "/docker-entrypoint.sh"
 
+RUN mkdir -p /opt/etc/ejbca && ln -s /opt/etc/ejbca /etc/ejbca && mv /opt /opt.init
+
 CMD ["/docker-entrypoint.sh"]
 
