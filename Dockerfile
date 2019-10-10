@@ -9,12 +9,13 @@ MAINTAINER Jichan <development@jc-lab.net>
 EXPOSE 8080 8442 8443
 
 ARG LIBP11_VERSION=0.4.10
-ARG OPENSC_VERSION=0.19.0
+ARG OPENSC_VERSION=0.20.0
+ARG OPENSC_VERSION_TAG=0.20.0-rc2
 
 RUN mkdir -p /usr/src/build
 WORKDIR /usr/src/build
 RUN yum clean all && rpm --rebuilddb; yum install -y yum-plugin-ovl && yum install -y opensc gcc openssl ccid autoconf automake curl gettext openssl-devel m4 libtool readline-devel zlib-devel pcsc-lite-devel pcsc-lite && yum clean all
-RUN curl -fsL https://github.com/OpenSC/OpenSC/releases/download/${OPENSC_VERSION}/opensc-${OPENSC_VERSION}.tar.gz  -o opensc-${OPENSC_VERSION}.tar.gz \
+RUN curl -fsL https://github.com/OpenSC/OpenSC/releases/download/${OPENSC_VERSION_TAG}/opensc-${OPENSC_VERSION}.tar.gz  -o opensc-${OPENSC_VERSION}.tar.gz \
     && tar -zxf opensc-${OPENSC_VERSION}.tar.gz \
     && rm opensc-${OPENSC_VERSION}.tar.gz \
     && cd opensc-${OPENSC_VERSION} \
